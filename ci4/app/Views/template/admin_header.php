@@ -18,8 +18,8 @@
 
     <nav>
       <a href="<?= base_url('/'); ?>" class="active">Dashboard</a>
-      <a href="<?= base_url('/artikel'); ?>">Artikel</a>
-      <a href="<?= base_url('/artikel/add'); ?>">Tambah Artikel</a>
+      <a href="<?= base_url('/admin/artikel'); ?>">Artikel</a>
+      <a href="<?= base_url('/admin/artikel/add'); ?>">Tambah Artikel</a>
     </nav>
     <section id="wrapper">
       <section id="main">
