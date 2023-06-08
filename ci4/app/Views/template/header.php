@@ -3,16 +3,19 @@
 
 <head>
   <meta charset="UTF-8">
-  <title><?= $title; ?></title>
-  <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
+  <title>
+    <?= $title; ?>
+  </title>
+  <link rel="stylesheet" href="<?= base_url('/style.css'); ?>">
 </head>
 
 <body>
-
   <div class="container">
     <header>
       <h1 class="judul">Layout Sederhana</h1>
     </header>
+
+
     <nav>
       <a href="<?= base_url('/'); ?>" class="active">Home</a>
       <a href="<?= base_url('/artikel'); ?>">Artikel</a>

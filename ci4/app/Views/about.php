@@ -4,4 +4,6 @@
   <hr>
   <p><?= $content; ?></p>
 </div>
+  
+
 <?= $this->include('template/footer'); ?>

@@ -15,7 +15,7 @@
   </div>
 </aside>
 </section>
-<footer class="footer" id="footer">
+<footer>
   <p>&copy; 2021 - Universitas Pelita Bangsa</p>
 </footer>
 </div>
