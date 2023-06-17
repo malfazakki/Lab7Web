@@ -38,8 +38,7 @@ class Artikel extends BaseController
     $data = [
       'title' => $title,
       'q' => $q,
-      'artikel' => $model->like('judul', $q)->paginate(10),
-      # data dibatasi 10 record per halaman
+      'artikel' => $model->like('judul', $q)->paginate(10), # datadibatasi 10 record per halaman
       'pager' => $model->pager,
     ];
     return view('artikel/admin_index', $data);

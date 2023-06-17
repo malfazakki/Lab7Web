@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -11,68 +9,52 @@ declare(strict_types=1);
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace CodeIgniter\Validation\StrictRules;
+namespace CodeIgniter\Validation;
 
-use CodeIgniter\Validation\FormatRules as NonStrictFormatRules;
+use DateTime;
 
 /**
  * Format validation Rules.
  */
 class FormatRules
 {
-    private NonStrictFormatRules $nonStrictFormatRules;
-
-    public function __construct()
-    {
-        $this->nonStrictFormatRules = new NonStrictFormatRules();
-    }
-
     /**
      * Alpha
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function alpha($str = null): bool
+    public function alpha(?string $str = null): bool
     {
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->alpha($str);
+        return ctype_alpha($str ?? '');
     }
 
     /**
      * Alpha with spaces.
      *
-     * @param array|bool|float|int|object|string|null $value Value.
+     * @param string|null $value Value.
      *
      * @return bool True if alpha with spaces, else false.
      */
-    public function alpha_space($value = null): bool
+    public function alpha_space(?string $value = null): bool
     {
-        if (! is_string($value)) {
-            return false;
+        if ($value === null) {
+            return true;
         }
 
-        return $this->nonStrictFormatRules->alpha_space($value);
+        // @see https://regex101.com/r/LhqHPO/1
+        return (bool) preg_match('/\A[A-Z ]+\z/i', $value);
     }
 
     /**
      * Alphanumeric with underscores and dashes
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @see https://regex101.com/r/XfVY3d/1
      */
-    public function alpha_dash($str = null): bool
+    public function alpha_dash(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
+        if ($str === null) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->alpha_dash($str);
+        return preg_match('/\A[a-z0-9_-]+\z/i', $str) === 1;
     }
 
     /**
@@ -82,189 +64,111 @@ class FormatRules
      * _ underscore, + plus, = equals, | vertical bar, : colon, . period
      * ~ ! # $ % & * - _ + = | : .
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string|null $str
      *
      * @return bool
+     *
+     * @see https://regex101.com/r/6N8dDY/1
      */
     public function alpha_numeric_punct($str)
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
+        if ($str === null) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->alpha_numeric_punct($str);
+        return preg_match('/\A[A-Z0-9 ~!#$%\&\*\-_+=|:.]+\z/i', $str) === 1;
     }
 
     /**
      * Alphanumeric
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function alpha_numeric($str = null): bool
+    public function alpha_numeric(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->alpha_numeric($str);
+        return ctype_alnum($str ?? '');
     }
 
     /**
      * Alphanumeric w/ spaces
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function alpha_numeric_space($str = null): bool
+    public function alpha_numeric_space(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->alpha_numeric_space($str);
+        // @see https://regex101.com/r/0AZDME/1
+        return (bool) preg_match('/\A[A-Z0-9 ]+\z/i', $str ?? '');
     }
 
     /**
      * Any type of string
      *
-     * @param array|bool|float|int|object|string|null $str
+     * Note: we specifically do NOT type hint $str here so that
+     * it doesn't convert numbers into strings.
+     *
+     * @param string|null $str
      */
     public function string($str = null): bool
     {
-        return $this->nonStrictFormatRules->string($str);
+        return is_string($str);
     }
 
     /**
      * Decimal number
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function decimal($str = null): bool
+    public function decimal(?string $str = null): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->decimal($str);
+        // @see https://regex101.com/r/HULifl/2/
+        return (bool) preg_match('/\A[-+]?\d{0,}\.?\d+\z/', $str ?? '');
     }
 
     /**
      * String of hexidecimal characters
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function hex($str = null): bool
+    public function hex(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->hex($str);
+        return ctype_xdigit($str ?? '');
     }
 
     /**
      * Integer
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function integer($str = null): bool
+    public function integer(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->integer($str);
+        return (bool) preg_match('/\A[\-+]?\d+\z/', $str ?? '');
     }
 
     /**
      * Is a Natural number  (0,1,2,3, etc.)
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function is_natural($str = null): bool
+    public function is_natural(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->is_natural($str);
+        return ctype_digit($str ?? '');
     }
 
     /**
      * Is a Natural number, but not a zero  (1,2,3, etc.)
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function is_natural_no_zero($str = null): bool
+    public function is_natural_no_zero(?string $str = null): bool
     {
-        if (is_int($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->is_natural_no_zero($str);
+        return $str !== '0' && ctype_digit($str ?? '');
     }
 
     /**
      * Numeric
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function numeric($str = null): bool
+    public function numeric(?string $str = null): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->numeric($str);
+        // @see https://regex101.com/r/bb9wtr/2
+        return (bool) preg_match('/\A[\-+]?\d*\.?\d+\z/', $str ?? '');
     }
 
     /**
      * Compares value against a regular expression pattern.
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function regex_match($str, string $pattern): bool
+    public function regex_match(?string $str, string $pattern): bool
     {
-        if (! is_string($str)) {
-            return false;
+        if (strpos($pattern, '/') !== 0) {
+            $pattern = "/{$pattern}/";
         }
 
-        return $this->nonStrictFormatRules->regex_match($str, $pattern);
+        return (bool) preg_match($pattern, $str ?? '');
     }
 
     /**
@@ -273,15 +177,11 @@ class FormatRules
      *
      * @see http://php.net/manual/en/datetimezone.listidentifiers.php
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function timezone($str = null): bool
+    public function timezone(?string $str = null): bool
     {
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictFormatRules->timezone($str);
+        return in_array($str ?? '', timezone_identifiers_list(), true);
     }
 
     /**
@@ -290,43 +190,42 @@ class FormatRules
      * Tests a string for characters outside of the Base64 alphabet
      * as defined by RFC 2045 http://www.faqs.org/rfcs/rfc2045
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function valid_base64($str = null): bool
+    public function valid_base64(?string $str = null): bool
     {
-        if (! is_string($str)) {
+        if ($str === null) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->valid_base64($str);
+        return base64_encode(base64_decode($str, true)) === $str;
     }
 
     /**
      * Valid JSON
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function valid_json($str = null): bool
+    public function valid_json(?string $str = null): bool
     {
-        if (! is_string($str)) {
-            return false;
-        }
+        json_decode($str ?? '');
 
-        return $this->nonStrictFormatRules->valid_json($str);
+        return json_last_error() === JSON_ERROR_NONE;
     }
 
     /**
      * Checks for a correctly formatted email address
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function valid_email($str = null): bool
+    public function valid_email(?string $str = null): bool
     {
-        if (! is_string($str)) {
-            return false;
+        // @see https://regex101.com/r/wlJG1t/1/
+        if (function_exists('idn_to_ascii') && defined('INTL_IDNA_VARIANT_UTS46') && preg_match('#\A([^@]+)@(.+)\z#', $str ?? '', $matches)) {
+            $str = $matches[1] . '@' . idn_to_ascii($matches[2], 0, INTL_IDNA_VARIANT_UTS46);
         }
 
-        return $this->nonStrictFormatRules->valid_email($str);
+        return (bool) filter_var($str, FILTER_VALIDATE_EMAIL);
     }
 
     /**
@@ -335,30 +234,51 @@ class FormatRules
      * Example:
      *     valid_emails[one@example.com,two@example.com]
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function valid_emails($str = null): bool
+    public function valid_emails(?string $str = null): bool
     {
-        if (! is_string($str)) {
-            return false;
+        foreach (explode(',', $str ?? '') as $email) {
+            $email = trim($email);
+
+            if ($email === '') {
+                return false;
+            }
+
+            if ($this->valid_email($email) === false) {
+                return false;
+            }
         }
 
-        return $this->nonStrictFormatRules->valid_emails($str);
+        return true;
     }
 
     /**
      * Validate an IP address (human readable format or binary string - inet_pton)
      *
-     * @param array|bool|float|int|object|string|null $ip
-     * @param string|null                             $which IP protocol: 'ipv4' or 'ipv6'
+     * @param string|null $which IP protocol: 'ipv4' or 'ipv6'
      */
-    public function valid_ip($ip = null, ?string $which = null): bool
+    public function valid_ip(?string $ip = null, ?string $which = null): bool
     {
-        if (! is_string($ip)) {
+        if (empty($ip)) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->valid_ip($ip, $which);
+        switch (strtolower($which ?? '')) {
+            case 'ipv4':
+                $option = FILTER_FLAG_IPV4;
+                break;
+
+            case 'ipv6':
+                $option = FILTER_FLAG_IPV6;
+                break;
+
+            default:
+                $option = 0;
+        }
+
+        return filter_var($ip, FILTER_VALIDATE_IP, $option) !== false
+            || (! ctype_print($ip) && filter_var(inet_ntop($ip), FILTER_VALIDATE_IP, $option) !== false);
     }
 
     /**
@@ -366,44 +286,73 @@ class FormatRules
      *
      * Warning: this rule will pass basic strings like
      * "banana"; use valid_url_strict for a stricter rule.
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function valid_url($str = null): bool
+    public function valid_url(?string $str = null): bool
     {
-        if (! is_string($str)) {
+        if (empty($str)) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->valid_url($str);
+        if (preg_match('/\A(?:([^:]*)\:)?\/\/(.+)\z/', $str, $matches)) {
+            if (! in_array($matches[1], ['http', 'https'], true)) {
+                return false;
+            }
+
+            $str = $matches[2];
+        }
+
+        $str = 'http://' . $str;
+
+        return filter_var($str, FILTER_VALIDATE_URL) !== false;
     }
 
     /**
      * Checks a URL to ensure it's formed correctly.
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param string|null                             $validSchemes comma separated list of allowed schemes
+     * @param string|null $validSchemes comma separated list of allowed schemes
      */
-    public function valid_url_strict($str = null, ?string $validSchemes = null): bool
+    public function valid_url_strict(?string $str = null, ?string $validSchemes = null): bool
     {
-        if (! is_string($str)) {
+        if (empty($str)) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->valid_url_strict($str, $validSchemes);
+        // parse_url() may return null and false
+        $scheme       = strtolower((string) parse_url($str, PHP_URL_SCHEME));
+        $validSchemes = explode(
+            ',',
+            strtolower($validSchemes ?? 'http,https')
+        );
+
+        return in_array($scheme, $validSchemes, true)
+            && filter_var($str, FILTER_VALIDATE_URL) !== false;
     }
 
     /**
      * Checks for a valid date and matches a given date format
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function valid_date($str = null, ?string $format = null): bool
+    public function valid_date(?string $str = null, ?string $format = null): bool
     {
-        if (! is_string($str)) {
+        if ($str === null) {
             return false;
         }
 
-        return $this->nonStrictFormatRules->valid_date($str, $format);
+        if (empty($format)) {
+            return strtotime($str) !== false;
+        }
+
+        $date   = DateTime::createFromFormat($format, $str);
+        $errors = DateTime::getLastErrors();
+
+        if ($date === false) {
+            return false;
+        }
+
+        // PHP 8.2 or later.
+        if ($errors === false) {
+            return true;
+        }
+
+        return $errors['warning_count'] === 0 && $errors['error_count'] === 0;
     }
 }

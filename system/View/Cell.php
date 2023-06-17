@@ -9,142 +9,296 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace CodeIgniter\View\Cells;
+namespace CodeIgniter\View;
 
-use CodeIgniter\Traits\PropertiesTrait;
-use LogicException;
-use ReflectionClass;
+use CodeIgniter\Cache\CacheInterface;
+use CodeIgniter\Config\Factories;
+use CodeIgniter\View\Cells\Cell as BaseCell;
+use CodeIgniter\View\Exceptions\ViewException;
+use Config\Services;
+use ReflectionException;
+use ReflectionMethod;
 
 /**
  * Class Cell
  *
- * The base class that View Cells should extend.
- * Provides extended features for managing/rendering
- * a single cell's contents.
+ * A simple class that can call any other class that can be loaded,
+ * and echo out it's result. Intended for displaying small blocks of
+ * content within views that can be managed by other libraries and
+ * not require they are loaded within controller.
  *
- * @function mount()
+ * Used with the helper function, it's use will look like:
+ *
+ *         viewCell('\Some\Class::method', 'limit=5 sort=asc', 60, 'cache-name');
+ *
+ * Parameters are matched up with the callback method's arguments of the same name:
+ *
+ *         class Class {
+ *             function method($limit, $sort)
+ *         }
+ *
+ * Alternatively, the params will be passed into the callback method as a simple array
+ * if matching params are not found.
+ *
+ *         class Class {
+ *             function method(array $params=null)
+ *         }
  */
 class Cell
 {
-    use PropertiesTrait;
-
     /**
-     * The name of the view to render.
-     * If empty, will be determined based
-     * on the cell class' name.
-     */
-    protected string $view = '';
-
-    /**
-     * Responsible for converting the view into HTML.
-     * Expected to be overridden by the child class
-     * in many occasions, but not all.
-     */
-    public function render(): string
-    {
-        if (! function_exists('decamelize')) {
-            helper('inflector');
-        }
-
-        return $this->view($this->view);
-    }
-
-    /**
-     * Sets the view to use when rendered.
-     */
-    public function setView(string $view)
-    {
-        $this->view = $view;
-
-        return $this;
-    }
-
-    /**
-     * Actually renders the view, and returns the HTML.
-     * In order to provide access to public properties and methods
-     * from within the view, this method extracts $data into the
-     * current scope and captures the output buffer instead of
-     * relying on the view service.
+     * Instance of the current Cache Instance
      *
-     * @throws LogicException
+     * @var CacheInterface
      */
-    final protected function view(?string $view, array $data = []): string
+    protected $cache;
+
+    /**
+     * Cell constructor.
+     */
+    public function __construct(CacheInterface $cache)
     {
-        $properties = $this->getPublicProperties();
-        $properties = $this->includeComputedProperties($properties);
-        $properties = array_merge($properties, $data);
-
-        $view = (string) $view;
-
-        if ($view === '') {
-            $viewName  = decamelize(class_basename(static::class));
-            $directory = dirname((new ReflectionClass($this))->getFileName()) . DIRECTORY_SEPARATOR;
-
-            $possibleView1 = $directory . substr($viewName, 0, strrpos($viewName, '_cell')) . '.php';
-            $possibleView2 = $directory . $viewName . '.php';
-        }
-
-        if ($view !== '' && ! is_file($view)) {
-            $directory = dirname((new ReflectionClass($this))->getFileName()) . DIRECTORY_SEPARATOR;
-
-            $view = $directory . $view . '.php';
-        }
-
-        $candidateViews = array_filter(
-            [$view, $possibleView1 ?? '', $possibleView2 ?? ''],
-            static fn (string $path): bool => $path !== '' && is_file($path)
-        );
-
-        if ($candidateViews === []) {
-            throw new LogicException(sprintf(
-                'Cannot locate the view file for the "%s" cell.',
-                static::class
-            ));
-        }
-
-        $foundView = current($candidateViews);
-
-        return (function () use ($properties, $foundView): string {
-            extract($properties);
-            ob_start();
-            include $foundView;
-
-            return ob_get_clean();
-        })();
+        $this->cache = $cache;
     }
 
     /**
-     * Provides capability to render on string casting.
+     * Render a cell, returning its body as a string.
+     *
+     * @param array|string|null $params
+     *
+     * @throws ReflectionException
      */
-    public function __toString()
+    public function render(string $library, $params = null, int $ttl = 0, ?string $cacheName = null): string
     {
-        return $this->render();
+        [$instance, $method] = $this->determineClass($library);
+
+        $class = is_object($instance)
+            ? get_class($instance)
+            : null;
+
+        // Is the output cached?
+        $cacheName = ! empty($cacheName)
+            ? $cacheName
+            : str_replace(['\\', '/'], '', $class) . $method . md5(serialize($params));
+
+        if (! empty($this->cache) && $output = $this->cache->get($cacheName)) {
+            return $output;
+        }
+
+        if (method_exists($instance, 'initController')) {
+            $instance->initController(Services::request(), Services::response(), Services::logger());
+        }
+
+        if (! method_exists($instance, $method)) {
+            throw ViewException::forInvalidCellMethod($class, $method);
+        }
+
+        $params = $this->prepareParams($params);
+
+        $output = $instance instanceof BaseCell
+            ? $this->renderCell($instance, $method, $params)
+            : $this->renderSimpleClass($instance, $method, $params, $class);
+
+        // Can we cache it?
+        if (! empty($this->cache) && $ttl !== 0) {
+            $this->cache->save($cacheName, $output, $ttl);
+        }
+
+        return $output;
     }
 
     /**
-     * Allows the developer to define computed properties
-     * as methods with `get` prefixed to the protected/private property name.
+     * Parses the params attribute. If an array, returns untouched.
+     * If a string, it should be in the format "key1=value key2=value".
+     * It will be split and returned as an array.
+     *
+     * @param array|string|null $params
+     *
+     * @return array|null
      */
-    private function includeComputedProperties(array $properties): array
+    public function prepareParams($params)
     {
-        $reservedProperties = ['data', 'view'];
-        $privateProperties  = $this->getNonPublicProperties();
+        if (empty($params) || (! is_string($params) && ! is_array($params))) {
+            return [];
+        }
 
-        foreach ($privateProperties as $property) {
-            $name = $property->getName();
+        if (is_string($params)) {
+            $newParams = [];
+            $separator = ' ';
 
-            // don't include any methods in the base class
-            if (in_array($name, $reservedProperties, true)) {
-                continue;
+            if (strpos($params, ',') !== false) {
+                $separator = ',';
             }
 
-            $computedMethod = 'get' . ucfirst($name) . 'Property';
+            $params = explode($separator, $params);
+            unset($separator);
 
-            if (method_exists($this, $computedMethod)) {
-                $properties[$name] = $this->{$computedMethod}();
+            foreach ($params as $p) {
+                if (! empty($p)) {
+                    [$key, $val] = explode('=', $p);
+
+                    $newParams[trim($key)] = trim($val, ', ');
+                }
+            }
+
+            $params = $newParams;
+            unset($newParams);
+        }
+
+        if ($params === []) {
+            return [];
+        }
+
+        return $params;
+    }
+
+    /**
+     * Given the library string, attempts to determine the class and method
+     * to call.
+     */
+    protected function determineClass(string $library): array
+    {
+        // We don't want to actually call static methods
+        // by default, so convert any double colons.
+        $library = str_replace('::', ':', $library);
+
+        // controlled cells might be called with just
+        // the class name, so add a default method
+        if (strpos($library, ':') === false) {
+            $library .= ':render';
+        }
+
+        [$class, $method] = explode(':', $library);
+
+        if (empty($class)) {
+            throw ViewException::forNoCellClass();
+        }
+
+        // locate and return an instance of the cell
+        $class = Factories::cells($class);
+
+        if (! is_object($class)) {
+            throw ViewException::forInvalidCellClass($class);
+        }
+
+        if (empty($method)) {
+            $method = 'index';
+        }
+
+        return [
+            $class,
+            $method,
+        ];
+    }
+
+    /**
+     * Renders a cell that extends the BaseCell class.
+     */
+    final protected function renderCell(BaseCell $instance, string $method, array $params): string
+    {
+        // Only allow public properties to be set, or protected/private
+        // properties that have a method to get them (get<Foo>Property())
+        $publicProperties  = $instance->getPublicProperties();
+        $privateProperties = array_column($instance->getNonPublicProperties(), 'name');
+        $publicParams      = array_intersect_key($params, $publicProperties);
+
+        foreach ($params as $key => $value) {
+            $getter = 'get' . ucfirst($key) . 'Property';
+            if (in_array($key, $privateProperties, true) && method_exists($instance, $getter)) {
+                $publicParams[$key] = $value;
             }
         }
 
-        return $properties;
+        // Fill in any public properties that were passed in
+        // but only ones that are in the $pulibcProperties array.
+        $instance = $instance->fill($publicParams);
+
+        // If there are any protected/private properties, we need to
+        // send them to the mount() method.
+        if (method_exists($instance, 'mount')) {
+            // if any $params have keys that match the name of an argument in the
+            // mount method, pass those variables to the method.
+            $mountParams = $this->getMethodParams($instance, 'mount', $params);
+            $instance->mount(...$mountParams);
+        }
+
+        return $instance->{$method}();
+    }
+
+    /**
+     * Returns the values from $params that match the parameters
+     * for a method, in the order they are defined. This allows
+     * them to be passed directly into the method.
+     */
+    private function getMethodParams(BaseCell $instance, string $method, array $params)
+    {
+        $mountParams = [];
+
+        try {
+            $reflectionMethod = new ReflectionMethod($instance, $method);
+            $reflectionParams = $reflectionMethod->getParameters();
+
+            foreach ($reflectionParams as $reflectionParam) {
+                $paramName = $reflectionParam->getName();
+
+                if (array_key_exists($paramName, $params)) {
+                    $mountParams[] = $params[$paramName];
+                }
+            }
+        } catch (ReflectionException $e) {
+            // do nothing
+        }
+
+        return $mountParams;
+    }
+
+    /**
+     * Renders the non-Cell class, passing in the string/array params.
+     *
+     * @todo Determine if this can be refactored to use $this-getMethodParams().
+     *
+     * @param object $instance
+     */
+    final protected function renderSimpleClass($instance, string $method, array $params, string $class): string
+    {
+        // Try to match up the parameter list we were provided
+        // with the parameter name in the callback method.
+        $refMethod  = new ReflectionMethod($instance, $method);
+        $paramCount = $refMethod->getNumberOfParameters();
+        $refParams  = $refMethod->getParameters();
+
+        if ($paramCount === 0) {
+            if (! empty($params)) {
+                throw ViewException::forMissingCellParameters($class, $method);
+            }
+
+            $output = $instance->{$method}();
+        } elseif (($paramCount === 1)
+            && ((! array_key_exists($refParams[0]->name, $params))
+            || (array_key_exists($refParams[0]->name, $params)
+            && count($params) !== 1))
+        ) {
+            $output = $instance->{$method}($params);
+        } else {
+            $fireArgs     = [];
+            $methodParams = [];
+
+            foreach ($refParams as $arg) {
+                $methodParams[$arg->name] = true;
+                if (array_key_exists($arg->name, $params)) {
+                    $fireArgs[$arg->name] = $params[$arg->name];
+                }
+            }
+
+            foreach (array_keys($params) as $key) {
+                if (! isset($methodParams[$key])) {
+                    throw ViewException::forInvalidCellParameter($key);
+                }
+            }
+
+            $output = $instance->{$method}(...array_values($fireArgs));
+        }
+
+        return $output;
     }
 }

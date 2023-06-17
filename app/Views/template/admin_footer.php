@@ -16,7 +16,7 @@
 </aside>
 </section>
 <footer>
-  <p>&copy; 2021 - Universitas Pelita Bangsa</p>
+  <p>&copy; 2023 - Malfazakki</p>
 </footer>
 </div>
 </body>

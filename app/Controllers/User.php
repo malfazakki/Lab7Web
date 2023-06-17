@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -16,7 +17,7 @@ class User extends BaseController
   {
     helper(['form']);
     $email = $this->request->getPost('email');
-    $password = $this->request->getPost('password');
+    $password = strval($this->request->getPost('password'));
     if (!$email) {
       return view('user/login');
     }

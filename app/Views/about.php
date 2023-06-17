@@ -1,9 +1,5 @@
 <?= $this->include('template/header'); ?>
-<div class="kiri">
-  <h1><?= $title; ?></h1>
-  <hr>
-  <p><?= $content; ?></p>
-</div>
-  
-
+<h1><?= $title; ?></h1>
+<hr>
+<p><?= $content; ?></p>
 <?= $this->include('template/footer'); ?>

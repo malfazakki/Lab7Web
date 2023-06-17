@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -11,97 +9,69 @@ declare(strict_types=1);
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace CodeIgniter\Validation\StrictRules;
+namespace CodeIgniter\Validation;
 
-use CodeIgniter\Validation\Rules as NonStrictRules;
 use Config\Database;
+use InvalidArgumentException;
 
 /**
  * Validation Rules.
  */
 class Rules
 {
-    private NonStrictRules $nonStrictRules;
-
-    public function __construct()
-    {
-        $this->nonStrictRules = new NonStrictRules();
-    }
-
     /**
      * The value does not match another field in $data.
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param array                                   $data Other field/value pairs
+     * @param array $data Other field/value pairs
      */
-    public function differs($str, string $field, array $data): bool
+    public function differs(?string $str, string $field, array $data): bool
     {
-        if (! is_string($str)) {
-            return false;
+        if (strpos($field, '.') !== false) {
+            return $str !== dot_array_search($field, $data);
         }
 
-        return $this->nonStrictRules->differs($str, $field, $data);
+        return array_key_exists($field, $data) && $str !== $data[$field];
     }
 
     /**
      * Equals the static value provided.
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function equals($str, string $val): bool
+    public function equals(?string $str, string $val): bool
     {
-        return $this->nonStrictRules->equals($str, $val);
+        return $str === $val;
     }
 
     /**
      * Returns true if $str is $val characters long.
      * $val = "5" (one) | "5,8,12" (multiple values)
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function exact_length($str, string $val): bool
+    public function exact_length(?string $str, string $val): bool
     {
-        if (! is_string($str)) {
-            return false;
+        $val = explode(',', $val);
+
+        foreach ($val as $tmp) {
+            if (is_numeric($tmp) && (int) $tmp === mb_strlen($str ?? '')) {
+                return true;
+            }
         }
 
-        return $this->nonStrictRules->exact_length($str, $val);
+        return false;
     }
 
     /**
      * Greater than
-     *
-     * @param array|bool|float|int|object|string|null $str expects int|string
      */
-    public function greater_than($str, string $min): bool
+    public function greater_than(?string $str, string $min): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->greater_than($str, $min);
+        return is_numeric($str) && $str > $min;
     }
 
     /**
      * Equal to or Greater than
-     *
-     * @param array|bool|float|int|object|string|null $str expects int|string
      */
-    public function greater_than_equal_to($str, string $min): bool
+    public function greater_than_equal_to(?string $str, string $min): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->greater_than_equal_to($str, $min);
+        return is_numeric($str) && $str >= $min;
     }
 
     /**
@@ -112,15 +82,9 @@ class Rules
      * Example:
      *    is_not_unique[table.field,where_field,where_value]
      *    is_not_unique[menu.id,active,1]
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function is_not_unique($str, string $field, array $data): bool
+    public function is_not_unique(?string $str, string $field, array $data): bool
     {
-        if (is_object($str) || is_array($str)) {
-            return false;
-        }
-
         // Grab any data for exclusion of a single row.
         [$field, $whereField, $whereValue] = array_pad(
             explode(',', $field),
@@ -149,20 +113,12 @@ class Rules
 
     /**
      * Value should be within an array of values
-     *
-     * @param array|bool|float|int|object|string|null $value
      */
-    public function in_list($value, string $list): bool
+    public function in_list(?string $value, string $list): bool
     {
-        if (is_int($value) || is_float($value)) {
-            $value = (string) $value;
-        }
+        $list = array_map('trim', explode(',', $list));
 
-        if (! is_string($value)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->in_list($value, $list);
+        return in_array($value, $list, true);
     }
 
     /**
@@ -173,15 +129,9 @@ class Rules
      * Example:
      *    is_unique[table.field,ignore_field,ignore_value]
      *    is_unique[users.email,id,5]
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function is_unique($str, string $field, array $data): bool
+    public function is_unique(?string $str, string $field, array $data): bool
     {
-        if (is_object($str) || is_array($str)) {
-            return false;
-        }
-
         [$field, $ignoreField, $ignoreValue] = array_pad(
             explode(',', $field),
             3,
@@ -208,117 +158,68 @@ class Rules
 
     /**
      * Less than
-     *
-     * @param array|bool|float|int|object|string|null $str expects int|string
      */
-    public function less_than($str, string $max): bool
+    public function less_than(?string $str, string $max): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->less_than($str, $max);
+        return is_numeric($str) && $str < $max;
     }
 
     /**
      * Equal to or Less than
-     *
-     * @param array|bool|float|int|object|string|null $str expects int|string
      */
-    public function less_than_equal_to($str, string $max): bool
+    public function less_than_equal_to(?string $str, string $max): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->less_than_equal_to($str, $max);
+        return is_numeric($str) && $str <= $max;
     }
 
     /**
      * Matches the value of another field in $data.
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param array                                   $data Other field/value pairs
+     * @param array $data Other field/value pairs
      */
-    public function matches($str, string $field, array $data): bool
+    public function matches(?string $str, string $field, array $data): bool
     {
-        return $this->nonStrictRules->matches($str, $field, $data);
+        if (strpos($field, '.') !== false) {
+            return $str === dot_array_search($field, $data);
+        }
+
+        return array_key_exists($field, $data) && $str === $data[$field];
     }
 
     /**
      * Returns true if $str is $val or fewer characters in length.
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function max_length($str, string $val): bool
+    public function max_length(?string $str, string $val): bool
     {
-        if (is_int($str) || is_float($str) || null === $str) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->max_length($str, $val);
+        return is_numeric($val) && $val >= mb_strlen($str ?? '');
     }
 
     /**
      * Returns true if $str is at least $val length.
-     *
-     * @param array|bool|float|int|object|string|null $str
      */
-    public function min_length($str, string $val): bool
+    public function min_length(?string $str, string $val): bool
     {
-        if (is_int($str) || is_float($str)) {
-            $str = (string) $str;
-        }
-
-        if (! is_string($str)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->min_length($str, $val);
+        return is_numeric($val) && $val <= mb_strlen($str ?? '');
     }
 
     /**
      * Does not equal the static value provided.
      *
-     * @param array|bool|float|int|object|string|null $str
+     * @param string $str
      */
-    public function not_equals($str, string $val): bool
+    public function not_equals(?string $str, string $val): bool
     {
-        return $this->nonStrictRules->not_equals($str, $val);
+        return $str !== $val;
     }
 
     /**
      * Value should not be within an array of values.
      *
-     * @param array|bool|float|int|object|string|null $value
+     * @param string $value
      */
-    public function not_in_list($value, string $list): bool
+    public function not_in_list(?string $value, string $list): bool
     {
-        if (null === $value) {
-            return true;
-        }
-
-        if (is_int($value) || is_float($value)) {
-            $value = (string) $value;
-        }
-
-        if (! is_string($value)) {
-            return false;
-        }
-
-        return $this->nonStrictRules->not_in_list($value, $list);
+        return ! $this->in_list($value, $list);
     }
 
     /**
@@ -326,7 +227,19 @@ class Rules
      */
     public function required($str = null): bool
     {
-        return $this->nonStrictRules->required($str);
+        if ($str === null) {
+            return false;
+        }
+
+        if (is_object($str)) {
+            return true;
+        }
+
+        if (is_array($str)) {
+            return $str !== [];
+        }
+
+        return trim((string) $str) !== '';
     }
 
     /**
@@ -337,13 +250,38 @@ class Rules
      *
      *     required_with[password]
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param string|null                             $fields List of fields that we should check if present
-     * @param array                                   $data   Complete list of fields from the form
+     * @param string|null $str
+     * @param string|null $fields List of fields that we should check if present
+     * @param array       $data   Complete list of fields from the form
      */
     public function required_with($str = null, ?string $fields = null, array $data = []): bool
     {
-        return $this->nonStrictRules->required_with($str, $fields, $data);
+        if ($fields === null || empty($data)) {
+            throw new InvalidArgumentException('You must supply the parameters: fields, data.');
+        }
+
+        // If the field is present we can safely assume that
+        // the field is here, no matter whether the corresponding
+        // search field is present or not.
+        $fields  = explode(',', $fields);
+        $present = $this->required($str ?? '');
+
+        if ($present) {
+            return true;
+        }
+
+        // Still here? Then we fail this test if
+        // any of the fields are present in $data
+        // as $fields is the lis
+        $requiredFields = [];
+
+        foreach ($fields as $field) {
+            if ((array_key_exists($field, $data) && ! empty($data[$field])) || (strpos($field, '.') !== false && ! empty(dot_array_search($field, $data)))) {
+                $requiredFields[] = $field;
+            }
+        }
+
+        return empty($requiredFields);
     }
 
     /**
@@ -354,12 +292,51 @@ class Rules
      *
      *     required_without[id,email]
      *
-     * @param array|bool|float|int|object|string|null $str
-     * @param string|null                             $otherFields The param fields of required_without[].
-     * @param string|null                             $field       This rule param fields aren't present, this field is required.
+     * @param string|null $str
+     * @param string|null $otherFields The param fields of required_without[].
+     * @param string|null $field       This rule param fields aren't present, this field is required.
      */
     public function required_without($str = null, ?string $otherFields = null, array $data = [], ?string $error = null, ?string $field = null): bool
     {
-        return $this->nonStrictRules->required_without($str, $otherFields, $data, $error, $field);
+        if ($otherFields === null || empty($data)) {
+            throw new InvalidArgumentException('You must supply the parameters: otherFields, data.');
+        }
+
+        // If the field is present we can safely assume that
+        // the field is here, no matter whether the corresponding
+        // search field is present or not.
+        $otherFields = explode(',', $otherFields);
+        $present     = $this->required($str ?? '');
+
+        if ($present) {
+            return true;
+        }
+
+        // Still here? Then we fail this test if
+        // any of the fields are not present in $data
+        foreach ($otherFields as $otherField) {
+            if ((strpos($otherField, '.') === false) && (! array_key_exists($otherField, $data) || empty($data[$otherField]))) {
+                return false;
+            }
+            if (strpos($otherField, '.') !== false) {
+                if ($field === null) {
+                    throw new InvalidArgumentException('You must supply the parameters: field.');
+                }
+
+                $fieldData       = dot_array_search($otherField, $data);
+                $fieldSplitArray = explode('.', $field);
+                $fieldKey        = $fieldSplitArray[1];
+
+                if (is_array($fieldData)) {
+                    return ! empty(dot_array_search($otherField, $data)[$fieldKey]);
+                }
+                $nowField      = str_replace('*', $fieldKey, $otherField);
+                $nowFieldVaule = dot_array_search($nowField, $data);
+
+                return null !== $nowFieldVaule;
+            }
+        }
+
+        return true;
     }
 }

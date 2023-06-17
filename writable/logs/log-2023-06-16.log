@@ -1,393 +1,114 @@
-CRITICAL - 2023-06-16 11:03:17 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 11:04:06 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 11:12:48 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 11:14:55 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 11:15:11 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 11:58:16 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
- 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 11:58:16 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
+ERROR - 2023-06-16 17:01:31 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\MySQLi\Connection.php:173
 Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "Config\App\Filters\Auth" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#4 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 11:58:38 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
- 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 11:58:38 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
+#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'lab_ci4', 3306, '', 0)
+#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\app\Controllers\Artikel.php(13): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(934): App\Controllers\Artikel->index()
+#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\MySQLi\Connection.php:218
 Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "Config\App\Filters\Auth" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#4 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:11:06 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
- 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:11:06 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "Config\App\Filters\Auth" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#4 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:36:35 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
- 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:36:35 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "Config\App\Filters\Auth" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#4 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:37:41 --> Class "CodeIgniter\Validation\FormatRules" not found
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 SYSTEMPATH\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
- 2 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
- 3 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
- 4 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
- 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', [])
- 7 APPPATH\Views\user\login.php(13): session()
- 8 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\app\\Views\\user\\login.php')
- 9 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-10 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('user/login', [], true)
-11 APPPATH\Controllers\User.php(21): view('user/login')
-12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\User->login()
-13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:37:41 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "CodeIgniter\Validation\FormatRules" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
-#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
-#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\user\login.php(13): session()
-#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(213): include('C:\\xampp\\htdocs...')
-#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(1184): CodeIgniter\View\View->render('user/login', Array, true)
-#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Controllers\User.php(21): view('user/login')
-#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(934): App\Controllers\User->login()
-#12 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-#13 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#14 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#15 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#16 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:37:46 --> Class "CodeIgniter\Validation\FormatRules" not found
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 SYSTEMPATH\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
- 2 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
- 3 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
- 4 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
- 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', [])
- 7 APPPATH\Views\user\login.php(13): session()
- 8 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\app\\Views\\user\\login.php')
- 9 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-10 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('user/login', [], true)
-11 APPPATH\Controllers\User.php(21): view('user/login')
-12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\User->login()
-13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:37:46 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "CodeIgniter\Validation\FormatRules" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
-#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
-#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\user\login.php(13): session()
-#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(213): include('C:\\xampp\\htdocs...')
-#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(1184): CodeIgniter\View\View->render('user/login', Array, true)
-#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Controllers\User.php(21): view('user/login')
-#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(934): App\Controllers\User->login()
-#12 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-#13 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#14 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#15 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#16 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:40:14 --> Class "CodeIgniter\Validation\FormatRules" not found
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 SYSTEMPATH\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
- 2 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
- 3 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
- 4 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
- 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', [])
- 7 APPPATH\Views\user\login.php(13): session()
- 8 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\app\\Views\\user\\login.php')
- 9 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-10 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('user/login', [], true)
-11 APPPATH\Controllers\User.php(21): view('user/login')
-12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\User->login()
-13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:40:14 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "CodeIgniter\Validation\FormatRules" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
-#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
-#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\user\login.php(13): session()
-#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(213): include('C:\\xampp\\htdocs...')
-#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(1184): CodeIgniter\View\View->render('user/login', Array, true)
-#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Controllers\User.php(21): view('user/login')
-#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(934): App\Controllers\User->login()
-#12 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-#13 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#14 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#15 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#16 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:40:24 --> Class "CodeIgniter\Validation\FormatRules" not found
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 SYSTEMPATH\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
- 2 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
- 3 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
- 4 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
- 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', [])
- 7 APPPATH\Views\user\login.php(13): session()
- 8 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\app\\Views\\user\\login.php')
- 9 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-10 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('user/login', [], true)
-11 APPPATH\Controllers\User.php(21): view('user/login')
-12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\User->login()
-13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:40:24 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "CodeIgniter\Validation\FormatRules" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
-#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
-#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\user\login.php(13): session()
-#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(213): include('C:\\xampp\\htdocs...')
-#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(1184): CodeIgniter\View\View->render('user/login', Array, true)
-#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Controllers\User.php(21): view('user/login')
-#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(934): App\Controllers\User->login()
-#12 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-#13 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#14 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#15 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#16 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:41:14 --> Class "CodeIgniter\Validation\FormatRules" not found
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 SYSTEMPATH\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
- 2 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
- 3 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
- 4 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
- 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', [])
- 7 APPPATH\Views\user\login.php(13): session()
- 8 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\app\\Views\\user\\login.php')
- 9 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-10 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('user/login', [], true)
-11 APPPATH\Controllers\User.php(21): view('user/login')
-12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\User->login()
-13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-06-16 12:41:14 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "CodeIgniter\Validation\FormatRules" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(667): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
-#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
-#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(988): CodeIgniter\Config\BaseService::__callStatic('session', Array)
-#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\user\login.php(13): session()
-#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(213): include('C:\\xampp\\htdocs...')
-#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
-#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Common.php(1184): CodeIgniter\View\View->render('user/login', Array, true)
-#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Controllers\User.php(21): view('user/login')
-#11 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(934): App\Controllers\User->login()
-#12 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
-#13 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#14 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#15 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
-CRITICAL - 2023-06-16 12:42:47 --> Class "Config\App\Filters\Auth" not found
-in SYSTEMPATH\Filters\Filters.php on line 166.
- 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
- 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
- 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\lab7_ci\\public\\index.php')
-CRITICAL - 2023-06-16 12:42:47 --> Uncaught Error: Class "CodeIgniter\Validation\FormatRules" not found in C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\HTTP\RequestTrait.php:58
-Stack trace:
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\app\Views\errors\html\error_exception.php(211): CodeIgniter\HTTP\Request->getIPAddress()
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(282): include('C:\\xampp\\htdocs...')
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(285): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Debug\Exceptions.php(156): CodeIgniter\Debug\Exceptions->render(Object(Error), 500)
-#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(Error))
-#5 {main}
-  thrown
-【Previous Exception】
-Error
-Class "Config\App\Filters\Auth" not found
-#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('admin/artikel', 'before')
-#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\lab7_ci\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
-#4 {main}
-in SYSTEMPATH\HTTP\RequestTrait.php on line 58.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#0 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\app\Controllers\Artikel.php(13): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(934): App\Controllers\Artikel->index()
+#7 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+#8 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\kuliah\pemrogramanweb2\code_igniter\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2023-06-16 17:01:31 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `artikel`', [], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Artikel.php(13): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:13:18 --> Undefined variable $row
+in APPPATH\Views\artikel\detail.php on line 6.
+ 1 APPPATH\Views\artikel\detail.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\app\\Views\\artikel\\detail.php', 6)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\app\\Views\\artikel\\detail.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/detail', [], true)
+ 5 APPPATH\Controllers\Artikel.php(29): view('artikel/detail', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->view('artikel-kedua')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:25:36 --> Invalid file: "artikel/admin_index.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('artikel/admin_index.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/admin_index', [], true)
+ 3 APPPATH\Controllers\Artikel.php(36): view('artikel/admin_index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->admin_index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:26:08 --> Invalid file: "template/admin_header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('template/admin_header.php')
+ 2 SYSTEMPATH\View\View.php(431): CodeIgniter\View\View->render('template/admin_header', null, true)
+ 3 APPPATH\Views\artikel\admin_index.php(1): CodeIgniter\View\View->include('template/admin_header')
+ 4 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\app\\Views\\artikel\\admin_index.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/admin_index', [], true)
+ 7 APPPATH\Controllers\Artikel.php(36): view('artikel/admin_index', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->admin_index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:26:10 --> Invalid file: "template/admin_header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('template/admin_header.php')
+ 2 SYSTEMPATH\View\View.php(431): CodeIgniter\View\View->render('template/admin_header', null, true)
+ 3 APPPATH\Views\artikel\admin_index.php(1): CodeIgniter\View\View->include('template/admin_header')
+ 4 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\app\\Views\\artikel\\admin_index.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/admin_index', [], true)
+ 7 APPPATH\Controllers\Artikel.php(36): view('artikel/admin_index', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->admin_index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:42:28 --> Invalid file: "artikel/form_edit.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('artikel/form_edit.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/form_edit', [], true)
+ 3 APPPATH\Controllers\Artikel.php(89): view('artikel/form_edit', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->edit('2')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
+CRITICAL - 2023-06-16 17:43:43 --> Invalid file: "artikel/admin_index.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('artikel/admin_index.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('artikel/admin_index', [], true)
+ 3 APPPATH\Controllers\Artikel.php(45): view('artikel/admin_index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Artikel->admin_index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\kuliah\\pemrogramanweb2\\code_igniter\\public\\index.php')
