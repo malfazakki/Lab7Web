@@ -54,11 +54,14 @@ class Artikel extends BaseController
     $isi = $this->request->getPost('isi');
     if ($isDataValid) {
       if (is_string($judul) && is_string($isi)) {
+        $file = $this->request->getFile('gambar');
+        $file->move(ROOTPATH . 'public/gambar');
         $artikel = new ArtikelModel();
         $artikel->insert([
           'judul' => $judul,
           'isi' => $isi,
           'slug' => url_title($judul),
+          'gambar' => $file->getName(),
         ]);
         return redirect('admin/artikel');
       }
